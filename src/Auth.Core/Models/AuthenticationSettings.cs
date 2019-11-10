@@ -5,4 +5,3 @@ namespace Auth.Core.Models
         public string Secret { get; set; }
     }
 }
-© 2019 GitHub, Inc
