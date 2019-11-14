@@ -2,7 +2,9 @@
 
 ---
 
-### Pathing
+An implementation of JWT Authentication/Authorization using .NET Core 3.
+
+### Paths
 
 | PATH | METHOD | DESCRIPTION |
 |------|--------|-------------|
