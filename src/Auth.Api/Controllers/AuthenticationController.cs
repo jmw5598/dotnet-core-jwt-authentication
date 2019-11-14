@@ -18,16 +18,11 @@ namespace Auth.Web.Controller
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
-        private readonly ITokenService _tokenService;
-        private readonly IPasswordHasher _hasher;
         private readonly IUsersRepository _usersRepository;
 
-        public AuthenticationController(IAuthenticationService authenticationService, 
-            ITokenService tokenService, IPasswordHasher hasher, IUsersRepository usersRepository)
+        public AuthenticationController(IAuthenticationService authenticationService, IUsersRepository usersRepository)
         {
             this._authenticationService = authenticationService;
-            this._hasher = hasher;
-            this._tokenService = tokenService;
             this._usersRepository = usersRepository;
         }
 
