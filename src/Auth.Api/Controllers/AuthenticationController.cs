@@ -33,8 +33,19 @@ namespace Auth.Web.Controller
 
         [AllowAnonymous]
         [HttpPost("tokens")]
-        public async Task<ActionResult<AuthenticatedUser>> AuthenticateUser([FromBody] Credentials credentials)
+        public async Task<ActionResult<AuthenticatedUser>> AuthenticateUser([FromBody] AuthenticateUserBindingModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var credentials = new Credentials
+            {
+                Username = model.Username,
+                Password = model.Password
+            };
+
             var authenticatedUser = await this._authenticationService.AuthenticateAsync(credentials);
 
             if (authenticatedUser == null)
@@ -70,8 +81,19 @@ namespace Auth.Web.Controller
 
         [AllowAnonymous]
         [HttpPost("refresh")]
-        public async Task<ActionResult<object>> RefreshToken(Token token)
+        public async Task<ActionResult<object>> RefreshToken([FromBody] RefreshAuthenticatedUserBindingModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var token = new Token 
+            {
+                AccessToken = model.AccessToken,
+                RefreshToken = model.RefreshToken
+            };
+
             var authenticatedUser = await this._authenticationService.RefreshAsync(token);
 
             if (authenticatedUser == null)
