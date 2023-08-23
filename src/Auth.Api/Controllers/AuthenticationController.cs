@@ -19,11 +19,13 @@ namespace Auth.Web.Controller
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IUsersRepository _usersRepository;
+        private readonly IPasswordHasher _hasher;
 
-        public AuthenticationController(IAuthenticationService authenticationService, IUsersRepository usersRepository)
+        public AuthenticationController(IAuthenticationService authenticationService, IUsersRepository usersRepository, IPasswordHasher hasher)
         {
             this._authenticationService = authenticationService;
             this._usersRepository = usersRepository;
+            this._hasher = hasher;
         }
 
         [AllowAnonymous]
